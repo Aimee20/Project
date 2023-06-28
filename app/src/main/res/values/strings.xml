@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My NutriscanApplication</string>
+    <string name="nutriscan">Nutriscan</string>
+    <string name="login">Login</string>
+    <string name="courriel">E-mail</string>
+    <string name="password">Password</string>
+    <string name="password_forget">Password forget?</string>
+    <string name="inscription">Inscription</string>
+    <string name="connection">Connection</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="password_confirme">Password confirme</string>
+    <string name="next">Next</string>
+</resources>
