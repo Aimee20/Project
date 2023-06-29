@@ -1,12 +1,10 @@
 package com.example.mynutriscanapplication;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-import androidx.room.Query;
 
 public class SQLiteDatabasse extends SQLiteOpenHelper {
     public SQLiteDatabasse(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -14,28 +12,17 @@ public class SQLiteDatabasse extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
+        // Créez vos tables et effectuez d'autres opérations de création ici
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Mettez à jour votre schéma de base de données ici, si nécessaire
     }
-    String[] projection = {
-            "id",
-            "email",
-            "password"
-    };
 
-    Cursor cursor = AppDatabase@Query(
-            "users",
-            projection,
-            null,
-            null,
-            null,
-            null,
-            null
-    );
-
+    public void myMethod() {
+        SQLiteDatabase db = getReadableDatabase();
+        // Utilisez l'objet db pour effectuer des opérations de lecture sur la base de données
+    }
 }

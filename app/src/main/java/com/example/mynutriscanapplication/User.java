@@ -1,8 +1,8 @@
 package com.example.mynutriscanapplication;
 
-import android.database.sqlite.SQLiteOpenHelper;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -17,6 +17,7 @@ public class User{
     private String password;
     private String username;
     private String prenom;
+
     public User(int id,String email, String password, String username, String prenom) {
         this.id=id;
         this.email = email;
@@ -61,4 +62,5 @@ public class User{
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
 }

@@ -1,4 +1,7 @@
 package com.example.mynutriscanapplication;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
