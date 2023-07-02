@@ -3,6 +3,8 @@ package com.example.mynutriscanapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,8 @@ public class EditActivity extends AppCompatActivity {
         nameeditTextTextPersonName = findViewById(R.id.nameeditTextTextPersonName);
         editimageView = findViewById(R.id.editimageView);
         confirmebutton = findViewById(R.id.confirmebutton);
+        // Chargement des informations existantes (si disponibles)
+        loadPersonalInfo();
         confirmebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,12 +37,33 @@ public class EditActivity extends AppCompatActivity {
                 String V1= surnameeditTextTextPersonName.getText().toString();
                 String V2 = nameeditTextTextPersonName.getText().toString();
                 //Do the different opérations on enregistrement
-                user.setUsername(V1);
-                user.setPrenom(V2);
-                Toast.makeText(EditActivity.this,"Information enregistrée", Toast.LENGTH_SHORT).show();
+                // Mise à jour des informations personnelles
+                savePersonalInfo(V1, V2);
                 // Affichez un message ou effectuez une action appropriée pour indiquer que les modifications ont été enregistrées
+                Toast.makeText(EditActivity.this,"Informations mis à jour", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EditActivity.this,AccueilActivity.class);
+                startActivity(intent);
+
             }
         });
+    }
+    // Chargement des informations personnelles existantes (si disponibles)
+    private void loadPersonalInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String firstName = sharedPreferences.getString("firstName", "");
+        String lastName = sharedPreferences.getString("lastName", "");
+
+        surnameeditTextTextPersonName.setText(firstName);
+        nameeditTextTextPersonName.setText(lastName);
+    }
+
+    // Sauvegarde des nouvelles informations personnelles
+    private void savePersonalInfo(String firstName, String lastName) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("firstName", firstName);
+        editor.putString("lastName", lastName);
+        editor.apply();
     }
 
 }
