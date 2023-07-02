@@ -1,24 +1,32 @@
 package com.example.mynutriscanapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     /*This part is for the declaration on the variable*/
     TextView LogintextView;
     TextView courrieltexteView;
     TextView passwordtextView;
-    Button connectionbutton;
+    private Button connectionbutton;
     Button inscriptionbutton;
     Button forgetbutton;
-    EditText editTextTextEmailAddress;
-    EditText editTextTextPassword;
+    private EditText editTextTextEmailAddress;
+    private EditText editTextTextPassword;
+
+    private AppDatabase appDatabase;
+    private UserDao userDao;
+
+    //Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
             courrieltexteView = findViewById(R.id.courrieltextView);
             passwordtextView = findViewById(R.id.passwordtextView);
             connectionbutton = findViewById(R.id.connectionbutton);
+            appDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"my-database").allowMainThreadQueries().build();
+
             connectionbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -35,9 +45,21 @@ public class LoginActivity extends AppCompatActivity {
                     // Get the values of the different fields such as:e-mail et password
                     String email = editTextTextEmailAddress.getText().toString();
                     String password = editTextTextPassword.getText().toString();
+                    userDao = appDatabase.userDao();
 
-                    //Call the login function;
-                    Login.login(LoginActivity.this, email, password);
+                    // Vérifier les informations d'identification
+                   User user = userDao.getUserByEmail(email);//
+                    if (user != null && user.getPassword().equals(password)) {
+                        // Connexion réussie
+                        Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                        // Démarrer une nouvelle page
+                        Intent intent = new Intent(LoginActivity.this,FavorisActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Informations d'identification invalides
+                        // Afficher un message d'erreur ou effectuer une action appropriée
+                        Toast.makeText(LoginActivity.this, "Échec de la connexion. Veuillez vérifier vos informations d'identification.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             inscriptionbutton = findViewById(R.id.inscriptionbutton);

@@ -11,4 +11,7 @@
     <string name="surname">Surname</string>
     <string name="password_confirme">Password confirme</string>
     <string name="next">Next</string>
+    <string name="favoris">Favoris</string>
+    <string name="picture">Put a picture</string>
+    <string name="Enregistrer">Confirme</string>
 </resources>
