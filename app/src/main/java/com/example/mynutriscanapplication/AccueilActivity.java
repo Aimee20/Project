@@ -23,11 +23,10 @@ import android.widget.Toast;
 
 
 public class AccueilActivity extends AppCompatActivity {
-    EditText editTextTextPersonName4;
-    EditText editTextTextPersonName3;
-    TextView datetextView;
+    TextView DescriptiontextView;
+    TextView AffichetextView;
     ImageButton PictureimageButton;
-    ImageButton profilimageButton;
+    ImageView FruitimageView;
     ImageButton FavorisimageButton;
     ImageButton ParameterimageButton;
     ImageView imageView;
@@ -41,9 +40,9 @@ public class AccueilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
         imageView = findViewById(R.id.imageView);
-        editTextTextPersonName4 = findViewById(R.id.editTextTextPersonName4);
-        editTextTextPersonName3 = findViewById(R.id.editTextTextPersonName3);
-        datetextView = findViewById(R.id.datetextView);
+        DescriptiontextView = findViewById(R.id.DescriptiontextView);
+        AffichetextView = findViewById(R.id.AffichetextView);
+        FruitimageView = findViewById(R.id.FrruitimageView);
         //Associating your UI button with a Button object for the device
         PictureimageButton = findViewById(R.id.PictureimageButton);
         PictureimageButton.setOnClickListener(new View.OnClickListener() {
@@ -57,14 +56,7 @@ public class AccueilActivity extends AppCompatActivity {
                     requestPermissions();
                 }
                 //Adds a click listener to the button to initiate the image capture intent
-                //dispatchTakePictureIntent();
-            }
-        });
-        profilimageButton = findViewById(R.id.profilimageButton);
-        profilimageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                dispatchTakePictureIntent();
             }
         });
         FavorisimageButton = findViewById(R.id.FavorisimageButton);
@@ -139,7 +131,8 @@ public class AccueilActivity extends AppCompatActivity {
             // The image has been captured successfully, you can now process the captured image
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            // Do something with the captured image, for example, display it in an ImageView
+            // Do something with the captured image, for example, display it in an Ima
+            // geView
             imageView.setImageBitmap(imageBitmap);
         }
     }

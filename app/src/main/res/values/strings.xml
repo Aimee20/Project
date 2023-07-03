@@ -14,4 +14,6 @@
     <string name="favoris">Favoris</string>
     <string name="picture">Put a picture</string>
     <string name="Enregistrer">Confirme</string>
+    <string name="description">Description</string>
+    <string name="affiche">Cette application consiste à aider un ou plusieurs utilisateurs à prendre en photo un produit naturel ou manufacturé pour en extraire les différentes informations tel que les calories, les informations minéraux, etc...</string>
 </resources>
